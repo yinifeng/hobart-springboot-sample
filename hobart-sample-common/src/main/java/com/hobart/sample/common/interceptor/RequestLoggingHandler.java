@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestLoggingHandler implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(RequestLoggingHandler.class);
 
-
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         final String method = request.getMethod();
         if (HttpMethod.POST.matches(method) || HttpMethod.PATCH.matches(method) || HttpMethod.PUT.matches(method)) {
@@ -26,11 +26,11 @@ public class RequestLoggingHandler implements HandlerInterceptor {
         return true;
     }
 
-
+    @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
     }
 
-
+    @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         final String method = request.getMethod();
         if (HttpMethod.POST.matches(method) || HttpMethod.PATCH.matches(method) || HttpMethod.PUT.matches(method)) {
