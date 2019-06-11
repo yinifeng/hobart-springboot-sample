@@ -1,10 +1,12 @@
 package com.hobart.sample.core.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//表示,如果值为null,则不返回
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class Wrapper<T> implements Serializable {
 
 	/**
