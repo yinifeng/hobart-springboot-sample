@@ -11,12 +11,13 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl extends BaseService<EmployeeMapper,Employee> implements EmployeeService{
-    
-    
+
+
+    @Transactional(rollbackFor=Exception.class)
     @Override
     public int insert(Employee employee) {
         int result = this.save(employee);
-        int i = 1 / 0;
+        //int i = 1 / 0;
         return result;
     }
 }

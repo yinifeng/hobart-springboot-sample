@@ -54,11 +54,13 @@ public interface Service<T>{
     /**
      * 保存一个实体, null的属性不会保存, 会使用数据库默认值  @param record the record
      *
+     * 并没有事物回滚
+     * 
      * @param record the record
      *
      * @return the int
      */
-    @Transactional(rollbackFor=Exception.class)
+    //@Transactional(rollbackFor=Exception.class)
     int save(T record);
 
     /**

@@ -63,7 +63,7 @@ public class EmployeeServiceTest {
         e1.setUpdator("hb");
         
         this.employeeService.insert(e1);
-        System.out.println("==============>"+e1.getId());
+        System.out.println("==============>"+e1);
     }
     
     @Test
