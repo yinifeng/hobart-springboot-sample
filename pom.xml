@@ -97,6 +97,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        
+    </dependencies>
 
 
     <!--配置阿里云仓库-->

@@ -1,8 +1,20 @@
 package com.hobart.sample.common.mybatis;
 
+import tk.mybatis.mapper.additional.idlist.DeleteByIdListMapper;
+import tk.mybatis.mapper.additional.idlist.IdListMapper;
+import tk.mybatis.mapper.additional.insert.InsertListMapper;
 import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.MySqlMapper;
 
-public interface MyMapper<T> extends Mapper<T>,MySqlMapper<T> {
-    
+
+/**
+ * MySqlMapper 自增序列的批量插入操作
+ * 
+ * 
+ * @param <T>
+ */
+public interface MyMapper<T> extends 
+        Mapper<T>/*,MySqlMapper<T>*/
+        , InsertListMapper<T>
+        , IdListMapper<T, Object> {
+
 }

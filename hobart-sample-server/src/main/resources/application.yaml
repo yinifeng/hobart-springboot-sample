@@ -42,8 +42,11 @@ mapper:
         - com.hobart.sample.common.mybatis.MyMapper
     not-empty: false
     identity: MYSQL
+#    order: BEFORE
+#    before: true
 pagehelper:
     helperDialect: mysql
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+logging.level.com.hobart.sample: debug
