@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
-public abstract class BaseService<M extends MyMapper<T>, T> implements Service<T>{
+public abstract class BaseService<M extends MyMapper<T,PK>, T,PK> implements Service<T,PK>{
     /**
      * The Logger.
      */
@@ -185,7 +185,7 @@ public abstract class BaseService<M extends MyMapper<T>, T> implements Service<T
      * @return the int
      */
     @Override
-    public int batchDelete(List<Object> list) {
+    public int batchDelete(List<PK> list) {
 //        int result = 0;
 ////        for (T record : list) {
 ////            int count = mapper.delete(record);

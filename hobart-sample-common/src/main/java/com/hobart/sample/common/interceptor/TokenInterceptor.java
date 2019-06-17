@@ -1,5 +1,6 @@
 package com.hobart.sample.common.interceptor;
 
+import com.hobart.sample.core.dto.LoginAuthDto;
 import com.hobart.sample.core.utils.ThreadLocalMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,10 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         logger.info("1..1....preHandle.........");
         String accountid = request.getHeader(TOKEN_KEY);
-        ThreadLocalMap.put(TOKEN_KEY, accountid);
+        LoginAuthDto user=new LoginAuthDto();
+        user.setUserAccount(accountid);
+        
+        ThreadLocalMap.put(TOKEN_KEY, user);
         Enumeration<String> headerNames = request.getHeaderNames();
         logger.info("====>"+headerNames);
         logger.info("1..2....preHandle........."+accountid);
@@ -43,9 +47,8 @@ public class TokenInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-        String accountid = (String)ThreadLocalMap.get(TOKEN_KEY);
-        
-        logger.info("2.......postHandle........"+accountid);
+        LoginAuthDto loginAuthDto = (LoginAuthDto)ThreadLocalMap.get(TOKEN_KEY);
+        logger.info("2.......postHandle........"+loginAuthDto.getUserAccount());
     }
 
     /**
@@ -57,7 +60,8 @@ public class TokenInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        String accountid = (String)ThreadLocalMap.get(TOKEN_KEY);
-        logger.info("3.......afterCompletion........"+accountid);
+        LoginAuthDto loginAuthDto = (LoginAuthDto)ThreadLocalMap.get(TOKEN_KEY);
+        logger.info("3.......afterCompletion........"+loginAuthDto.getUserAccount());
+        ThreadLocalMap.remove(TOKEN_KEY);
     }
 }

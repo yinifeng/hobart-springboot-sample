@@ -46,7 +46,7 @@ public class EmployeeServiceTest {
 
         int result = this.employeeService.batchSave(employees);
         employees.forEach(e ->{
-            System.out.println("------------->"+e.getId());
+            System.out.println(result+"------------->"+e);
         });
         
     }
@@ -68,15 +68,15 @@ public class EmployeeServiceTest {
     
     @Test
     public void testBatchDelete(){
-        int result = this.employeeMapper.deleteByIdList(Arrays.asList("4ebf36e978444e1c8fb5daa443e9cd33", "f772fbb05fcb4354bfea7be3ab74b788"));
+        int result = this.employeeMapper.deleteByIdList(Arrays.asList("5ad0bead51d84d2f9245165cf2c10e52", "8bd1280407554b71bbed4553d4b49ad8"));
         System.out.println("=====>"+result);
     }
     
     @Test
     public void testSelectByIds(){
-        List<Employee> employees = this.employeeMapper.selectByIdList(Arrays.asList("1742877cf26e4945ad0a0c86fc024620", "1acb1756721d464e8c9526a7a3d6cbb5"));
+        List<Employee> employees = this.employeeMapper.selectByIdList(Arrays.asList("5ad0bead51d84d2f9245165cf2c10e52", "8bd1280407554b71bbed4553d4b49ad8"));
         employees.forEach(e->{
-            System.out.println(e.getId()+"<========>"+e.getName());
+            System.out.println(e.getId()+"<========>"+e);
         });
     }
     

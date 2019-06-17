@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface Service<T>{
+public interface Service<T,PK>{
 
     /**
      * 根据实体中的属性值进行查询, 查询条件使用等号  @param record the record
@@ -99,7 +99,7 @@ public interface Service<T>{
      * @return the int
      */
     @Transactional(rollbackFor = Exception.class)
-    int batchDelete(List<Object> list);
+    int batchDelete(List<PK> list);
 
     /**
      * 根据主键字段进行删除, 方法参数必须包含完整的主键属性  @param key the key

@@ -1,6 +1,7 @@
 package com.hobart.sample.controller;
 
 import com.hobart.sample.common.annotation.ValidateAnnotation;
+import com.hobart.sample.core.dto.LoginAuthDto;
 import com.hobart.sample.core.utils.ThreadLocalMap;
 import com.hobart.sample.core.wrapper.WrapMapper;
 import com.hobart.sample.core.wrapper.Wrapper;
@@ -21,7 +22,7 @@ public class TestController {
     @ValidateAnnotation
     @GetMapping("/get")
     public Wrapper<Student> getStudent(){
-        String accountid = (String)ThreadLocalMap.get("accountid");
+        LoginAuthDto loginAuthDto = (LoginAuthDto)ThreadLocalMap.get("accountid");
         Student student = new Student();
         student.setId(1);
         student.setAge(21);
@@ -38,7 +39,7 @@ public class TestController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        logger.info("方法执行完成......"+accountid);
+        logger.info("方法执行完成......"+loginAuthDto.getUserAccount());
         return WrapMapper.ok(student);
     }
 

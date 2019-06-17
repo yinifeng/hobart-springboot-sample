@@ -1,5 +1,8 @@
 package com.hobart.sample.common.mybatis;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hobart.sample.core.dto.LoginAuthDto;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -8,14 +11,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import tk.mybatis.mapper.annotation.KeySql;
 import tk.mybatis.mapper.code.ORDER;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-
+@MappedSuperclass
 public class BaseEntity implements Serializable{
     private static final long serialVersionUID = 2393269568666085258L;
 
@@ -46,13 +46,71 @@ public class BaseEntity implements Serializable{
      */
     @Column(name = "create_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
     /**
      * 更新时间
      */
     @Column(name = "update_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
+
+    @Transient
+    private Integer pageNum;
+
+    @Transient
+    private Integer pageSize;
+
+    @Transient
+    private String orderBy;
+
+    @Transient
+    @JsonIgnore
+    public boolean isNew() {
+        return this.id == null;
+    }
+
+    /**
+     * Sets update info.
+     *
+     * @param user the user
+     */
+    @Transient
+    @JsonIgnore
+    public void setUpdateInfo(LoginAuthDto user) {
+
+        if (isNew()) {
+            this.creator = (this.updator = user.getUserAccount());
+            this.createTime = (this.updateTime = new Date());
+        }
+        this.updator = user.getUserAccount();
+        this.updateTime = new Date();
+    }
+
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
 
     public String getId() {
         return id;

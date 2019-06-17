@@ -12,9 +12,9 @@ import tk.mybatis.mapper.common.Mapper;
  * 
  * @param <T>
  */
-public interface MyMapper<T> extends 
+public interface MyMapper<T,PK> extends 
         Mapper<T>/*,MySqlMapper<T>*/
         , InsertListMapper<T>
-        , IdListMapper<T, Object> {
+        , IdListMapper<T, PK> {
 
 }
