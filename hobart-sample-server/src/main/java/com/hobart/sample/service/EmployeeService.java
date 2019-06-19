@@ -11,4 +11,5 @@ public interface EmployeeService extends Service<Employee,String>{
     
     int addEmp(String name, Integer age, LoginAuthDto loginAuthDto);
     
+    Employee selectById(String id);
 }

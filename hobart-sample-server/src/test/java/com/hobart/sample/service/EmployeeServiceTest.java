@@ -1,20 +1,29 @@
 package com.hobart.sample.service;
 
+import com.hobart.sample.HobartApplication;
 import com.hobart.sample.domain.model.Employee;
 import com.hobart.sample.mapper.EmployeeMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@Transactional
+@SpringBootTest(classes = HobartApplication.class)
 public class EmployeeServiceTest {
     @Autowired
     private EmployeeService employeeService;
@@ -22,6 +31,7 @@ public class EmployeeServiceTest {
     private EmployeeMapper employeeMapper;
 
     @Test
+    @Rollback
     public void batchInsert() {
         Date now = new Date();
         Employee e1=new Employee();
@@ -78,6 +88,12 @@ public class EmployeeServiceTest {
         employees.forEach(e->{
             System.out.println(e.getId()+"<========>"+e);
         });
+    }
+    
+    @Test
+    public void testSelectById(){
+        Employee employee = this.employeeService.selectById("0fb6ed612202470f9a03e956fb4c3921");
+        System.out.println(employee);
     }
     
 }

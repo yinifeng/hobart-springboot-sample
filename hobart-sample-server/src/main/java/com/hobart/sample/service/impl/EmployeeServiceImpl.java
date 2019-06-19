@@ -33,4 +33,9 @@ public class EmployeeServiceImpl extends BaseService<EmployeeMapper, Employee, S
         //int i=1/0;
         return result;
     }
+
+    @Override
+    public Employee selectById(String id) {
+        return this.mapper.selectById(id);
+    }
 }
