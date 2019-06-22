@@ -7,7 +7,7 @@
 您在hobart注册用户已激活成功。
 
 hobart.net
-${dateTime}
+${dateTime?string('yyyy-MM-dd')}
 
 </body>
 </html>

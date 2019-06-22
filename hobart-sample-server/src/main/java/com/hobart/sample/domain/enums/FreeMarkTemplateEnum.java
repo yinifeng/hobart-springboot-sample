@@ -7,7 +7,7 @@ package com.hobart.sample.domain.enums;
  */
 public enum FreeMarkTemplateEnum {
 	
-	ACTIVE_USER_SUCCESS("ACTIVE_USER_SUCCESS", "注册用户-激活用户成功", "freemark/user.ftl");
+	ACTIVE_USER_SUCCESS("ACTIVE_USER_SUCCESS", "注册用户-激活用户成功", "email/user.ftl");
 	
 	/**
 	 * The Key.

@@ -9,7 +9,7 @@ public interface EmployeeService extends Service<Employee,String>{
     
     int insert(Employee employee);
     
-    int addEmp(String name, Integer age, LoginAuthDto loginAuthDto);
+    int addEmp(String name, Integer age, LoginAuthDto loginAuthDto)  throws Exception;
     
     Employee selectById(String id);
 }

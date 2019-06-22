@@ -26,7 +26,7 @@ public class EmployeeController extends BaseController{
     private FreeMarkerService freeMarkerService;
     
     @GetMapping("/add")
-    public Wrapper addEmp(String name,Integer age){
+    public Wrapper addEmp(String name,Integer age) throws Exception{
         LoginAuthDto loginAuthDto = this.getCurrentUser();
         this.logger.info("请求参数name={},age={}",name,age);
         //employeeService.addEmp(name, age, loginAuthDto);
