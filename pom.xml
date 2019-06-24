@@ -13,6 +13,7 @@
         <module>hobart-sample-common</module>
         <module>hobart-sample-server</module>
         <module>hobart-sample-geneator</module>
+        <module>hobart-sample-hibernate</module>
     </modules>
     
     <!--
