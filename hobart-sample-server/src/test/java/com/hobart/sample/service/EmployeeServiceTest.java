@@ -30,6 +30,9 @@ public class EmployeeServiceTest {
     @Autowired
     private EmployeeMapper employeeMapper;
 
+    /**
+     * 这个可以回写 因为主键是uuid生成
+     */
     @Test
     @Rollback
     public void batchInsert() {

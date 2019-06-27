@@ -46,7 +46,7 @@ public class CodeGenerator {
 //        genCodeByCustomModelName("t_hobart_employee",convertTableNameToModel("t_hobart_employee"));
 //        convertTableNameToModel("t_hobart_employee");
 
-        genModelAndMapper("t_hobart_employee", "Employee");
+        genModelAndMapper("t_hobart_coutry", "Coutry");
     }
 
     /**

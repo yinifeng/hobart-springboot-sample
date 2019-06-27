@@ -150,6 +150,9 @@ public abstract class BaseService<M extends MyMapper<T,PK>, T,PK> implements Ser
      */
     @Override
     public int update(T entity) {
+        //对象某个字段为空也加入更新
+        //return mapper.updateByPrimaryKey(entity);
+        //对象某个字段为空就不加入更新
         return mapper.updateByPrimaryKeySelective(entity);
     }
 
